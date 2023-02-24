@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_map/components/custom_button.dart';
 import 'package:google_map/modules/google_map/controller/map_controller.dart';
+import 'package:google_map/utils/local_data_storage.dart';
 
 import '../../../components/custom_textfield.dart';
 import 'components/google_map.dart';
@@ -145,15 +146,15 @@ class _CreateNewAddressScreenState extends State<CreateNewAddressScreen> {
                       const Spacer(),
                       CustomButton(
                         onPressed: () {
-                          debugPrint(
-                            addressController.addNewAddress(
-                              icons: 'assets/img/home.png',
-                              address: addressController
-                                  .addressController.value.text,
-                              location: addressController.address.value,
-                              desc: '',
-                            ),
+                         
+                          addressController.addNewAddress(
+                            isIcons: addressController.isChecked.value,
+                            address:
+                                addressController.addressController.value.text,
+                            location: addressController.address.value,
+                            desc: '',
                           );
+
                           addressController.clear();
                           Navigator.pop(context);
                         },

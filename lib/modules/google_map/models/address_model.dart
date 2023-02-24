@@ -1,10 +1,10 @@
 class AddressModel {
-  final String? icons;
+  final bool? isIcons;
   final String? addressName;
   final String? locationDetail;
   final String? desc;
   AddressModel({
-    this.icons,
+    this.isIcons,
     this.addressName,
     this.locationDetail,
     this.desc,

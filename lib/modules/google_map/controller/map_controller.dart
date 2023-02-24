@@ -19,7 +19,6 @@ class AddressController extends GetxController {
   var isCheckMaker = false.obs;
   var emptyList = <AddressModel>[].obs;
   var isChecked = false.obs;
-  // var icons = ''.obs;
 
   clear() {
     address.value = '';
@@ -47,13 +46,13 @@ class AddressController extends GetxController {
   }
 
   addNewAddress(
-      {required String icons,
+      {required bool isIcons,
       required String address,
       required String location,
       String? desc}) {
     emptyList.add(
       AddressModel(
-        icons: icons,
+        isIcons: isIcons,
         addressName: address,
         locationDetail: location,
         desc: desc,

@@ -15,6 +15,7 @@ class MyLocationAddress extends StatefulWidget {
 
 final getController = Get.put(AddressController());
 
+
 class _MyLocationAddressState extends State<MyLocationAddress> {
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,7 @@ class _MyLocationAddressState extends State<MyLocationAddress> {
             children: [
               Expanded(
                 child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
                   padding: const EdgeInsets.all(8.0),
                   itemCount: getController.emptyList.length,
                   itemBuilder: (context, index) {
@@ -38,15 +40,23 @@ class _MyLocationAddressState extends State<MyLocationAddress> {
                       child: Row(
                         children: [
                           CircleAvatar(
-                            child: getController.isChecked.value == true
-                                ? Image.asset(
-                                    getController.emptyList[index].icons!)
-                                : CircleAvatar(
-                                    child: Text(
-                                      addressController
-                                          .emptyList[index].addressName![0],
-                                    ),
-                                  ),
+                            child:
+                                getController.emptyList[index].isIcons == true
+                                    ? Image.asset('assets/img/school.png')
+                                    : CircleAvatar(
+                                        backgroundColor: Colors.amber,
+                                        child: Text(
+                                          addressController
+                                              .emptyList[index].addressName![0]
+                                              .toUpperCase(),
+                                          style: theme()
+                                              .textTheme
+                                              .displayLarge!
+                                              .copyWith(
+                                                color: Colors.white,
+                                              ),
+                                        ),
+                                      ),
                           ),
                           const SizedBox(width: 15.0),
                           Column(
@@ -56,6 +66,7 @@ class _MyLocationAddressState extends State<MyLocationAddress> {
                                 getController.emptyList[index].addressName!,
                                 style: theme().textTheme.displayLarge,
                               ),
+                              const SizedBox(height: 10.0),
                               Text(
                                 getController.emptyList[index].locationDetail!,
                                 style: theme().textTheme.displayMedium,
