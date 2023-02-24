@@ -19,7 +19,7 @@ class AddressController extends GetxController {
   var isCheckMaker = false.obs;
   var emptyList = <AddressModel>[].obs;
   var isChecked = false.obs;
-  var icons = ''.obs;
+  // var icons = ''.obs;
 
   clear() {
     address.value = '';
@@ -51,9 +51,13 @@ class AddressController extends GetxController {
       required String address,
       required String location,
       String? desc}) {
-    emptyList.add(AddressModel(
-        icons: isChecked == true ? 'assets/img/school.png' : 'None',
+    emptyList.add(
+      AddressModel(
+        icons: icons,
         addressName: address,
-        locationDetail: location));
+        locationDetail: location,
+        desc: desc,
+      ),
+    );
   }
 }

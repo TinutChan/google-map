@@ -19,45 +19,6 @@ class CreateNewAddressScreen extends StatefulWidget {
 final addressController = Get.put(AddressController());
 
 class _CreateNewAddressScreenState extends State<CreateNewAddressScreen> {
-  // Future<void> getAddressFromLatLng(LatLng position) async {
-  //   try {
-  //     await placemarkFromCoordinates(position.latitude, position.longitude)
-  //         .then((List<Placemark> placemarks) {
-  //       Placemark place = placemarks[0];
-  //       setState(() {
-  //         stAddress =
-  //             '${place.street}, ${place.administrativeArea},${place.name}, ${place.country}'
-  //                 .toString();
-  //       });
-  //       debugPrint("Full Address:$stAddress");
-  //     });
-  //   } catch (e) {
-  //     debugPrint("Error :$e");
-  //   } finally {
-  //     debugPrint("Error final  :");
-  //   }
-  // }
-
-  // getAddressFromLatLngs() async {
-  //   try {
-  //     List<Placemark> placemarks =
-  //         await placemarkFromCoordinates(11.55072, 104.8969216
-  //             // _currentPosition!.latitude,
-  //             // _currentPosition!.longitude
-  //             );
-
-  //     Placemark place = placemarks[0];
-
-  //     setState(() {
-  //       _currentAddress =
-  //           "${place.locality}, ${place.postalCode}, ${place.country}";
-  //     });
-  //     debugPrint('nanatib :  ${ _currentAddress}');
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-
   @override
   void initState() {
     addressController.clear();
@@ -148,8 +109,6 @@ class _CreateNewAddressScreenState extends State<CreateNewAddressScreen> {
                             () {
                               addressController.isChecked.value =
                                   !addressController.isChecked.value;
-                              debugPrint(
-                                  '= = = = = ${addressController.isChecked.value}= = = = =');
                             },
                           );
                         },
@@ -186,12 +145,15 @@ class _CreateNewAddressScreenState extends State<CreateNewAddressScreen> {
                       const Spacer(),
                       CustomButton(
                         onPressed: () {
-                          addressController.addNewAddress(
-                              icons: addressController.icons.value,
+                          debugPrint(
+                            addressController.addNewAddress(
+                              icons: 'assets/img/home.png',
                               address: addressController
                                   .addressController.value.text,
                               location: addressController.address.value,
-                              desc: '');
+                              desc: '',
+                            ),
+                          );
                           addressController.clear();
                           Navigator.pop(context);
                         },

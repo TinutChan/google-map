@@ -38,8 +38,15 @@ class _MyLocationAddressState extends State<MyLocationAddress> {
                       child: Row(
                         children: [
                           CircleAvatar(
-                            child: Image.asset(
-                                '${getController.emptyList[index].icons}'),
+                            child: getController.isChecked.value == true
+                                ? Image.asset(
+                                    getController.emptyList[index].icons!)
+                                : CircleAvatar(
+                                    child: Text(
+                                      addressController
+                                          .emptyList[index].addressName![0],
+                                    ),
+                                  ),
                           ),
                           const SizedBox(width: 15.0),
                           Column(
