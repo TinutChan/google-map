@@ -37,7 +37,10 @@ class _MyLocationAddressState extends State<MyLocationAddress> {
                       ),
                       child: Row(
                         children: [
-                          const CircleAvatar(),
+                          CircleAvatar(
+                            child: Image.asset(
+                                '${getController.emptyList[index].icons}'),
+                          ),
                           const SizedBox(width: 15.0),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

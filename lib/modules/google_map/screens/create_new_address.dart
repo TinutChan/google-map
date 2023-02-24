@@ -126,7 +126,9 @@ class _CreateNewAddressScreenState extends State<CreateNewAddressScreen> {
                           textEditingController:
                               addressController.locationDetailController.value,
                           readOnly: true,
-                          hintText: addressController.address.value,
+                          hintText: addressController.address.value != false
+                              ? addressController.address.value
+                              : 'Location Detail',
                           labelText: 'Location',
                           obscureText: false,
                         ),
@@ -139,18 +141,26 @@ class _CreateNewAddressScreenState extends State<CreateNewAddressScreen> {
                         readOnly: false,
                         obscureText: false,
                       ),
+                      const SizedBox(height: 15.0),
                       GestureDetector(
                         onTap: () {
-                          setState(() {
-                            addressController.isChecked.value =
-                                !addressController.isChecked.value;
-                          });
+                          setState(
+                            () {
+                              addressController.isChecked.value =
+                                  !addressController.isChecked.value;
+                              debugPrint(
+                                  '= = = = = ${addressController.isChecked.value}= = = = =');
+                            },
+                          );
                         },
                         child: addressController.isChecked.value == false
                             ? Container(
                                 width: double.infinity,
                                 height: 100,
-                                color: Colors.blue,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Image.asset('assets/img/home.png'),
                               )
                             : GestureDetector(
                                 onTap: () {
@@ -159,26 +169,29 @@ class _CreateNewAddressScreenState extends State<CreateNewAddressScreen> {
                                   });
                                 },
                                 child: Container(
+                                  padding: const EdgeInsets.all(3.0),
                                   width: double.infinity,
                                   height: 100,
-                                  color: Colors.green,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: const Color(0xff00afb9),
+                                      width: 4,
+                                    ),
+                                  ),
+                                  child: Image.asset('assets/img/home.png'),
                                 ),
                               ),
                       ),
                       const Spacer(),
                       CustomButton(
                         onPressed: () {
-                          debugPrint(
-                              "1${addressController.addressController.value.text}");
-                          debugPrint("1${addressController.address.value}");
-
                           addressController.addNewAddress(
+                              icons: addressController.icons.value,
                               address: addressController
                                   .addressController.value.text,
                               location: addressController.address.value,
                               desc: '');
-                          debugPrint(
-                              'Nantib Nantib:${addressController.locationDetailController.value.text}::${addressController.addressController.value.text}::${addressController.address.value}');
                           addressController.clear();
                           Navigator.pop(context);
                         },

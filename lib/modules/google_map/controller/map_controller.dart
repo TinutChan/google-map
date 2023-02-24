@@ -17,10 +17,9 @@ class AddressController extends GetxController {
   var longitudePosition = 0.0.obs;
   var address = "".obs;
   var isCheckMaker = false.obs;
-  // var modelAddress = <AddressModel>[].obs;
   var emptyList = <AddressModel>[].obs;
-  var itemCount = 0.obs;
   var isChecked = false.obs;
+  var icons = ''.obs;
 
   clear() {
     address.value = '';
@@ -48,12 +47,13 @@ class AddressController extends GetxController {
   }
 
   addNewAddress(
-      {required String address, required String location, String? desc}) {
-    // AddressModel(addressName: address, locationDetail: location, desc: desc);
-    emptyList.add(AddressModel(addressName: address, locationDetail: location));
-    // itemCount.value = emptyList.length;
-    // debugPrint('emptyList====: ${itemCount.value}');
-    // debugPrint('LocationDetail: ${locationDetailController.value.text}');
-    // debugPrint('List $emptyList');
+      {required String icons,
+      required String address,
+      required String location,
+      String? desc}) {
+    emptyList.add(AddressModel(
+        icons: isChecked == true ? 'assets/img/school.png' : 'None',
+        addressName: address,
+        locationDetail: location));
   }
 }
